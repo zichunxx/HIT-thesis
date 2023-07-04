@@ -256,8 +256,8 @@
 \RequirePackage[below]{placeins}%允许上一个section的浮动图形出现在下一个section的开始部分,还提供\FloatBarrier命令,使所有未处理的浮动图形立即被处理
 \RequirePackage{flafter}       % 使得所有浮动体不能被放置在其浮动环境之前，以免浮动体在引述它的文本之前出现.
 \RequirePackage{multirow}       %使用Multirow宏包，使得表格可以合并多个row格
-\RequirePackage{subfigure}%支持子图 %centerlast 设置最后一行是否居中
-\RequirePackage[subfigure]{ccaption} %支持双语标题
+% \RequirePackage{subfigure}%支持子图 %centerlast 设置最后一行是否居中
+% \RequirePackage[subfigure]{ccaption} %支持双语标题
 
 %% 添加字号、行距等设置
 \renewcommand\normalsize{%
@@ -321,6 +321,15 @@
     fixskip=true,
     break={},
   },
+  paragraph={
+    afterindent=true,
+    runin = false,
+    beforeskip={7.5bp},
+    afterskip={7.5bp},
+    format={\heiti\normalsize},
+    aftername=\enspace,
+    fixskip=true,
+  },
   paragraph/afterindent=true,
   subparagraph/afterindent=true
 }
@@ -347,6 +356,15 @@
         format=\heiti\sihao,
         fixskip=true,
         aftername={\ }
+      },
+      paragraph={
+        afterindent=true,
+        runin = false,
+        beforeskip={7.5bp},
+        afterskip={7.5bp},
+        format={\heiti\normalsize},
+        aftername=\enspace,
+        fixskip=true,
       }
     }
     \fancypagestyle{hit@shenzhen@headings@main}{%
@@ -574,7 +592,9 @@
     \ifhit@print \thispagestyle{empty}\mbox{} \clearpage \fi
     \ifhit@toc
       \tableofcontents
+      \pagenumbering{Roman}   % <- 加这一行
       \clearpage
+      \pagenumbering{arabic}    % <- 和这一行
     \fi
   \end{titlepage}
   \ifboolexpr{ bool {hit@shenzhen} and bool {hit@master} }{\pagestyle{hit@shenzhen@headings@main}}{}{}
